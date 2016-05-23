@@ -3,6 +3,14 @@
 
 # --- !Ups
 
+create table administrators (
+  admin_id                      integer not null,
+  login_id                      varchar(255),
+  pass                          varchar(255),
+  constraint pk_administrators primary key (admin_id)
+);
+create sequence administrators_seq;
+
 create table case_study (
   case_id                       integer not null,
   year                          integer,
@@ -94,6 +102,9 @@ drop index if exists ix_gratitude_card_case_study_gratitude_card;
 
 alter table gratitude_card_case_study drop constraint if exists fk_gratitude_card_case_study_case_study;
 drop index if exists ix_gratitude_card_case_study_case_study;
+
+drop table if exists administrators;
+drop sequence if exists administrators_seq;
 
 drop table if exists case_study;
 drop sequence if exists case_study_seq;
