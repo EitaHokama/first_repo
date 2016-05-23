@@ -3,6 +3,8 @@ package models;
 import com.avaje.ebean.Model;
 import com.avaje.ebean.Model.Find;
 
+import play.data.validation.Constraints.Required;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,13 +22,19 @@ public class Gratitude_Card extends Model {
 	//@ManyToMany
 	public Integer card_id;
 	@ManyToOne
+	@Required
 	public Employees sender_id;
 	@ManyToOne
+	@Required
 	public Employees receiver_id;
+	@Required
 	public Date date;
+	@Required
 	public String card_title;
+	@Required
 	public String card_content;
 	@ManyToOne
+	@Required
 	public Category category_id;
 
 	@ManyToMany

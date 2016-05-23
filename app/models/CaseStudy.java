@@ -3,6 +3,8 @@ package models;
 import com.avaje.ebean.Model;
 import com.avaje.ebean.Model.Find;
 
+import play.data.validation.Constraints.Required;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,9 +18,10 @@ import javax.persistence.OneToMany;
 @Entity
 public class CaseStudy extends Model {
 	@Id
-	//@ManyToMany
 	public Integer case_id;
+	@Required
 	public Integer year;
+	@Required
 	public Integer month;
 
 	@ManyToMany(mappedBy="cs")

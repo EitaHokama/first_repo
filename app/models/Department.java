@@ -3,6 +3,8 @@ package models;
 import com.avaje.ebean.Model;
 import com.avaje.ebean.Model.Find;
 
+import play.data.validation.Constraints.Required;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import javax.persistence.OneToMany;
 public class Department extends Model {
 	@Id
 	public Integer department_id;
+	@Required
 	public String department_name;
 
 	@OneToMany
