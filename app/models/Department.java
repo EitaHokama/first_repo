@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import com.avaje.ebean.Model.Find;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,5 +19,7 @@ public class Department extends Model {
 
 	@OneToMany
 	public List<Employees> employees = new ArrayList<>();
+
+	public static Find<Integer,Department> find = new Find<Integer,Department>(){};
 
 }

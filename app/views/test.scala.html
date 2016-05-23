@@ -1,4 +1,4 @@
-
+@(gc : Gratitude_Card ,cs : CaseStudy)
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	@cs.gc.get(0).card_title
+	@gc.category_id.gc.get(0).sender_id.name
 </body>
 </html>

@@ -1,5 +1,6 @@
 package controllers;
 
+import models.CaseStudy;
 import models.Employees;
 import models.Gratitude_Card;
 import play.mvc.*;
@@ -25,7 +26,8 @@ public class HomeController extends Controller {
     public Result test(){
     	//Employees emp = Employees.find.byId(1);
     	Gratitude_Card gc = Gratitude_Card.find.byId(1);
-    	return ok(test.render());
+    	CaseStudy cs = CaseStudy.find.byId(1);
+    	return ok(test.render(gc,cs));
     }
 
 }
