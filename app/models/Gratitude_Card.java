@@ -23,7 +23,7 @@ public class Gratitude_Card extends Model {
 	public Employees sender_id;
 	@ManyToOne
 	public Employees receiver_id;
-	//public Date date;
+	public Date date;
 	public String card_title;
 	public String card_content;
 	@ManyToOne

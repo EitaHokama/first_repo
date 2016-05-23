@@ -11,12 +11,6 @@ create table case_study (
 );
 create sequence case_study_seq;
 
-create table case_study_gratitude_card (
-  case_study_case_id            integer not null,
-  gratitude_card_card_id        integer not null,
-  constraint pk_case_study_gratitude_card primary key (case_study_case_id,gratitude_card_card_id)
-);
-
 create table category (
   category_id                   integer not null,
   category_name                 varchar(255),
@@ -48,6 +42,7 @@ create table gratitude_card (
   card_id                       integer not null,
   sender_id_employees_id        integer,
   receiver_id_employees_id      integer,
+  date                          timestamp,
   card_title                    varchar(255),
   card_content                  varchar(255),
   category_id_category_id       integer,
@@ -60,12 +55,6 @@ create table gratitude_card_case_study (
   case_study_case_id            integer not null,
   constraint pk_gratitude_card_case_study primary key (gratitude_card_card_id,case_study_case_id)
 );
-
-alter table case_study_gratitude_card add constraint fk_case_study_gratitude_card_case_study foreign key (case_study_case_id) references case_study (case_id) on delete restrict on update restrict;
-create index ix_case_study_gratitude_card_case_study on case_study_gratitude_card (case_study_case_id);
-
-alter table case_study_gratitude_card add constraint fk_case_study_gratitude_card_gratitude_card foreign key (gratitude_card_card_id) references gratitude_card (card_id) on delete restrict on update restrict;
-create index ix_case_study_gratitude_card_gratitude_card on case_study_gratitude_card (gratitude_card_card_id);
 
 alter table employees add constraint fk_employees_depatrment_id_department_id foreign key (depatrment_id_department_id) references department (department_id) on delete restrict on update restrict;
 create index ix_employees_depatrment_id_department_id on employees (depatrment_id_department_id);
@@ -88,12 +77,6 @@ create index ix_gratitude_card_case_study_case_study on gratitude_card_case_stud
 
 # --- !Downs
 
-alter table case_study_gratitude_card drop constraint if exists fk_case_study_gratitude_card_case_study;
-drop index if exists ix_case_study_gratitude_card_case_study;
-
-alter table case_study_gratitude_card drop constraint if exists fk_case_study_gratitude_card_gratitude_card;
-drop index if exists ix_case_study_gratitude_card_gratitude_card;
-
 alter table employees drop constraint if exists fk_employees_depatrment_id_department_id;
 drop index if exists ix_employees_depatrment_id_department_id;
 
@@ -114,8 +97,6 @@ drop index if exists ix_gratitude_card_case_study_case_study;
 
 drop table if exists case_study;
 drop sequence if exists case_study_seq;
-
-drop table if exists case_study_gratitude_card;
 
 drop table if exists category;
 drop sequence if exists category_seq;

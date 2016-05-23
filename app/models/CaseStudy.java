@@ -21,7 +21,7 @@ public class CaseStudy extends Model {
 	public Integer year;
 	public Integer month;
 
-	@ManyToMany()
+	@ManyToMany(mappedBy="cs")
     public List<Gratitude_Card> gc = new ArrayList<>();
 
     public static Find<Integer,CaseStudy> find = new Find<Integer,CaseStudy>(){};
