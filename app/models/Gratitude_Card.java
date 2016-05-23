@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Model;
+import com.avaje.ebean.Model.Find;
 
 import java.util.Date;
 
@@ -16,16 +17,14 @@ public class Gratitude_Card extends Model {
 	//@ManyToMany
 	public Integer card_id;
 	@ManyToOne
-	@JoinColumn(name="employees_id")
-	public Integer sender_id;
+	public Employees sender_id;
 	@ManyToOne
-	@JoinColumn(name="employees_id")
-	public Integer receiver_id;
-	public Date date;
+	public Employees receiver_id;
+	//public Date date;
 	public String card_title;
 	public String card_content;
-	//@MnayToOne
-	public Integer category_id;
+	@ManyToOne
+	public Category category_id;
 
-
+	public static Find<Integer,Gratitude_Card> find = new Find<Integer,Gratitude_Card>(){};
 }

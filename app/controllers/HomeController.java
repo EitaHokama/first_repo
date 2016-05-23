@@ -1,5 +1,7 @@
 package controllers;
 
+import models.Employees;
+import models.Gratitude_Card;
 import play.mvc.*;
 
 import views.html.*;
@@ -18,6 +20,12 @@ public class HomeController extends Controller {
      */
     public Result index() {
         return ok(index.render("Your new application is ready."));
+    }
+
+    public Result test(){
+    	//Employees emp = Employees.find.byId(1);
+    	Gratitude_Card gc = Gratitude_Card.find.byId(1);
+    	return ok(test.render());
     }
 
 }

@@ -1,8 +1,11 @@
 package models;
 
 import com.avaje.ebean.Model;
+import com.avaje.ebean.Model.Find;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,9 +15,12 @@ import javax.persistence.OneToMany;
 @Entity
 public class Category extends Model {
 	@Id
-	//@OneToMany
+
 	public Integer category_id;
 	public String category_name;
 
+	@OneToMany(mappedBy="category_id")
+	public List<Gratitude_Card> gc = new ArrayList<>();
 
+	public static Find<Integer,Category> find = new Find<Integer,Category>(){};
 }
