@@ -1,10 +1,14 @@
-@(title: String)(headH: Html)(content: Html)
+@(title: String)(par: String)(headH: Html)(content: Html)
 @import views.html.template._
 
+<!-- 引数 タイトル,権限,ヘッダ追記内容,内容 -->
 @template(title){
 		@headH
 	}{
 		<nav>
+		@if(par =="admin"){
+			作成
+		}
 
 		</nav>
 		<section>
