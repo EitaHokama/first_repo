@@ -1,0 +1,13 @@
+@(title: String)(headH: Html)(content: Html)
+@import views.html.template._
+
+@template(title){
+		@headH
+	}{
+		<nav>
+
+		</nav>
+		<section>
+			@content
+		</section>
+	}
