@@ -1,12 +1,8 @@
 @(gc : Gratitude_Card ,cs : CaseStudy)
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	@cs.gc.get(0).card_title
+@import views.html.template._
+
+@onSideMenu("テスト")(""){
+	}{
+		@cs.gc.get(0).card_title <br>
 	@gc.category_id.gc.get(0).sender_id.name
-</body>
-</html>
+	}
