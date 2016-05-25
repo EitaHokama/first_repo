@@ -10,29 +10,37 @@
 　部署、送信者、カテゴリ　絞り込み-->
 
 <div class= "ichiran_width">
-	<table class= "ichiran_index">
-		<tr>
 
-			@for(str <- show){
-					@if(str == "送信部署"){
-						<th class="sender_department">送信部署</th>
-					}else{@if(str == "送信者"){
-						<th class="sender">送信者</th>
-					}else{@if(str == "受信部署"){
-						<th class="receiver_department">受信部署</th>
-					}else{@if(str == "受信者"){
-						<th class="receiver">受信者</th>
-					}else{@if(str == "日付"){
-						<th class="date">日付</th>
-					}else{@if(str == "タイトル"){
-						<th class="card_title">タイトル</th>
-					}else{@if(str=="カテゴリ"){
-						<th class="category">カテゴリ</th>
-					}}}}}}}
-				}
+	<form action="@routes.TestController.test2Post()" method="POST">
+		<table class= "ichiran_index">
+			<tr>
 
-		</tr>
-	</table>
+				@for(str <- show){
+						@if(str == "送信部署"){
+							<th class="sender_department">送信部署</th>
+						}else{@if(str == "送信者"){
+							<th class="sender">送信者</th>
+						}else{@if(str == "受信部署"){
+							<th class="receiver_department">受信部署</th>
+						}else{@if(str == "受信者"){
+							<th class="receiver">受信者</th>
+						}else{@if(str == "日付"){
+							<th class="date">日付</th>
+						}else{@if(str == "タイトル"){
+							<th class="card_title">タイトル</th>
+						}else{@if(str=="カテゴリ"){
+							<th class="category"><select name="category" />
+							<option>カテゴリ</option>
+								@for(cat <- Category.find.all()){
+									<option>@cat.category_name</option>
+								}
+							</select></th>
+						}}}}}}}
+					}
+			<th><input type="submit" value="検索" /></th>
+			</tr>
+		</table>
+	</form>
 </div>
 <div class="ichiran_contents ichiran_width">
 	<table class= ichiran_table>

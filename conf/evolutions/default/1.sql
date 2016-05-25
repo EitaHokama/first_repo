@@ -64,6 +64,9 @@ create table gratitude_card_case_study (
   constraint pk_gratitude_card_case_study primary key (gratitude_card_card_id,case_study_case_id)
 );
 
+create table gratitude_card_sort (
+);
+
 alter table employees add constraint fk_employees_depatrment_id_department_id foreign key (depatrment_id_department_id) references department (department_id) on delete restrict on update restrict;
 create index ix_employees_depatrment_id_department_id on employees (depatrment_id_department_id);
 
@@ -122,4 +125,6 @@ drop table if exists gratitude_card;
 drop sequence if exists gratitude_card_seq;
 
 drop table if exists gratitude_card_case_study;
+
+drop table if exists gratitude_card_sort;
 

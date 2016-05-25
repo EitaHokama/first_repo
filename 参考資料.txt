@@ -1,0 +1,6 @@
+javascliptの動的生成
+http://stackoverflow.com/questions/26747536/play-framework-template-that-is-actually-a-js-file
+javascliptによるドロップダウンリストの連携
+http://www.ksknet.net/javascript/post_54.html
+ソート
+http://java-reference.sakuraweb.com/java_collection_sort_original.html
