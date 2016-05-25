@@ -1,6 +1,37 @@
 @(gc: List[Gratitude_Card])(par: String)(show: List[String])
 @import views.html.template._
 
+@sdf= @{new java.text.SimpleDateFormat("YYYY/MM/dd")}
+
 <!-- gc ソート、絞り込み済み感謝カードリスト　par 権限 show　一覧表示項目(左から) -->
 <!--　日付　ソート
 　部署、送信者、カテゴリ　絞り込み-->
+
+
+<table>
+	<tr>
+
+		@for(str <- show){
+				@if(str == "送信部署"){
+					<th class="sender_department">送信部署</th>
+				}else{@if(str == "送信者"){
+					<th class="sender">送信者</th>
+				}else{@if(str == "受信部署"){
+					<th class="receiver_department">受信部署</th>
+				}else{@if(str == "受信者"){
+					<th class="receiver">受信者</th>
+				}else{@if(str == "日付"){
+					<th class="date">日付</th>
+				}else{@if(str == "タイトル"){
+					<th class="card_title">タイトル</th>
+				}else{@if(str=="カテゴリ"){
+					<th class="category">カテゴリ</th>
+				}}}}}}}
+			}
+
+	</tr>
+</table>
+
+
+@sdf.format(891890121112L)
+

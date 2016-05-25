@@ -26,7 +26,7 @@ public class TestController extends Controller {
     	//Employees emp = Employees.find.byId(1);
     	List<Gratitude_Card> gc = Gratitude_Card.find.all();
 
-    	return ok(test.render(gc, ""));
+    	return ok(test2.render(gc, ""));
     }
 
 }
