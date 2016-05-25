@@ -1,13 +1,17 @@
 @(gc: List[Gratitude_Card])(par: String)(show: List[String])
 @import views.html.template._
+@import controllers.SelectGC
+
 
 @sdf= @{new java.text.SimpleDateFormat("YYYY/MM/dd")}
+
 @range = @{Range(0, gc.size)}
 
 
 <!-- gc ソート、絞り込み済み感謝カードリスト　par 権限 show　一覧表示項目(左から) -->
 <!--　日付　ソート
 　部署、送信者、カテゴリ　絞り込み-->
+
 
 <div class= "ichiran_width">
 
@@ -16,23 +20,23 @@
 			<tr>
 
 				@for(str <- show){
-						@if(str == "送信部署"){
-							<th class="sender_department">送信部署</th>
-						}else{@if(str == "送信者"){
-							<th class="sender">送信者</th>
-						}else{@if(str == "受信部署"){
-							<th class="receiver_department">受信部署</th>
-						}else{@if(str == "受信者"){
-							<th class="receiver">受信者</th>
-						}else{@if(str == "日付"){
-							<th class="date">日付</th>
-						}else{@if(str == "タイトル"){
-							<th class="card_title">タイトル</th>
-						}else{@if(str=="カテゴリ"){
-							<th class="category"><select name="category" />
-							<option>カテゴリ</option>
+						@if(str == SelectGC.name.get("sender_department")){
+							<th class="sender_department">@SelectGC.name.get("sender_department")</th>
+						}else{@if(str == SelectGC.name.get("sender")){
+							<th class="sender">@SelectGC.name.get("sender")</th>
+						}else{@if(str == SelectGC.name.get("receiver_department")){
+							<th class="receiver_department">@SelectGC.name.get("receiver_department")</th>
+						}else{@if(str == SelectGC.name.get("receiver")){
+							<th class="receiver">@SelectGC.name.get("receiver")</th>
+						}else{@if(str == SelectGC.name.get("date")){
+							<th class="date">@SelectGC.name.get("date")</th>
+						}else{@if(str == SelectGC.name.get("title")){
+							<th class="card_title">@SelectGC.name.get("title")</th>
+						}else{@if(str== SelectGC.name.get("category")){
+							<th class="category" ><select name="category" />
+							<option >@SelectGC.name.get @lastReq.get("category")("category")</option>
 								@for(cat <- Category.find.all()){
-									<option>@cat.category_name</option>
+									<option  >@cat.category_name</option>
 								}
 							</select></th>
 						}}}}}}}
@@ -48,19 +52,19 @@
 
 		<tr>
 			@for(str <- show){
-				@if(str == "送信部署"){
+				@if(str == SelectGC.name.get("sender_department")){
 					<td class="sender_department">@gc.get(i).sender_id.depatrment_id.department_name</td>
-				}else{@if(str == "送信者"){
+				}else{@if(str == SelectGC.name.get("sender")){
 					<td class="sender">@gc.get(i).sender_id.name</td>
-				}else{@if(str == "受信部署"){
+				}else{@if(str == SelectGC.name.get("receiver_department")){
 					<td class="receiver_department">@gc.get(i).receiver_id.depatrment_id.department_name</td>
-				}else{@if(str == "受信者"){
+				}else{@if(str == SelectGC.name.get("receiver")){
 					<td class="receiver">@gc.get(i).receiver_id.name</td>
-				}else{@if(str == "日付"){
+				}else{@if(str == SelectGC.name.get("date")){
 					<td class="date">@sdf.format(gc.get(i).date)</td>
-				}else{@if(str == "タイトル"){
+				}else{@if(str == SelectGC.name.get("title")){
 					<td class="card_title">@gc.get(i).card_title</td>
-				}else{@if(str=="カテゴリ"){
+				}else{@if(str== SelectGC.name.get("category")){
 					<td class="category">@gc.get(i).category_id.category_name</td>
 				}}}}}}}
 			}
@@ -71,5 +75,5 @@
 </div>
 <br>
 
-@sdf.format(891890121112L)
+@sdf.format(new java.util.Date())
 

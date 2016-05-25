@@ -12,6 +12,7 @@ import play.data.Form;
 import play.data.FormFactory;
 import javax.inject.Inject;
 import java.util.Map;
+import java.util.HashMap;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -34,14 +35,14 @@ public class TestController extends Controller {
     	//Employees emp = Employees.find.byId(1);
     	List<Gratitude_Card> gc = Gratitude_Card.find.all();
 
-    	return ok(test2.render(gc, ""));
+    	return ok(test2.render(gc, "", new HashMap<String, String[]>()));
     }
     public Result test2Post(){
     	//Employees emp = Employees.find.byId(1);
     	List<Gratitude_Card> gc ;
     	//Form<FindForm> f = new Form(FindForm.class).bindFromRequest();
     	Map<String, String[]> params =request().body().asFormUrlEncoded();
-
+    	SelectGC sel = new SelectGC(params);
 
 
     	List<Category> cat = Category.find.where().eq("category_name",params.get("category")[0]).findList();
@@ -52,12 +53,14 @@ public class TestController extends Controller {
     	}else{
     		gc = Gratitude_Card.find.all();
     	}
+    	gc = new SelectGC(params).find();
+
 
     			/*(Category.find.where().
     					eq("category_name", params.get("category")[0])
     					.findList().category_id));*/
 
-    	return ok(test2.render(gc, params.get("category")[0]));
+    	return ok(test2.render(gc, params.get("category")[0]));//, params));
     }
 
 }
