@@ -15,3 +15,6 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 GET		/test						controllers.HomeController.test()
 
 GET		/test2						controllers.TestController.test2()
+
+
+

@@ -2,36 +2,66 @@
 @import views.html.template._
 
 @sdf= @{new java.text.SimpleDateFormat("YYYY/MM/dd")}
+@range = @{Range(0, gc.size)}
+
 
 <!-- gc ソート、絞り込み済み感謝カードリスト　par 権限 show　一覧表示項目(左から) -->
 <!--　日付　ソート
 　部署、送信者、カテゴリ　絞り込み-->
 
+<div class= "ichiran_width">
+	<table class= "ichiran_index">
+		<tr>
 
-<table>
-	<tr>
+			@for(str <- show){
+					@if(str == "送信部署"){
+						<th class="sender_department">送信部署</th>
+					}else{@if(str == "送信者"){
+						<th class="sender">送信者</th>
+					}else{@if(str == "受信部署"){
+						<th class="receiver_department">受信部署</th>
+					}else{@if(str == "受信者"){
+						<th class="receiver">受信者</th>
+					}else{@if(str == "日付"){
+						<th class="date">日付</th>
+					}else{@if(str == "タイトル"){
+						<th class="card_title">タイトル</th>
+					}else{@if(str=="カテゴリ"){
+						<th class="category">カテゴリ</th>
+					}}}}}}}
+				}
 
-		@for(str <- show){
+		</tr>
+	</table>
+</div>
+<div class="ichiran_contents ichiran_width">
+	<table class= ichiran_table>
+		@for(i <- range){
+
+		<tr>
+			@for(str <- show){
 				@if(str == "送信部署"){
-					<th class="sender_department">送信部署</th>
+					<td class="sender_department">@gc.get(i).sender_id.depatrment_id.department_name</td>
 				}else{@if(str == "送信者"){
-					<th class="sender">送信者</th>
+					<td class="sender">@gc.get(i).sender_id.name</td>
 				}else{@if(str == "受信部署"){
-					<th class="receiver_department">受信部署</th>
+					<td class="receiver_department">@gc.get(i).receiver_id.depatrment_id.department_name</td>
 				}else{@if(str == "受信者"){
-					<th class="receiver">受信者</th>
+					<td class="receiver">@gc.get(i).receiver_id.name</td>
 				}else{@if(str == "日付"){
-					<th class="date">日付</th>
+					<td class="date">@sdf.format(gc.get(i).date)</td>
 				}else{@if(str == "タイトル"){
-					<th class="card_title">タイトル</th>
+					<td class="card_title">@gc.get(i).card_title</td>
 				}else{@if(str=="カテゴリ"){
-					<th class="category">カテゴリ</th>
+					<td class="category">@gc.get(i).category_id.category_name</td>
 				}}}}}}}
 			}
+		</tr>
+		}
+	</table>
 
-	</tr>
-</table>
-
+</div>
+<br>
 
 @sdf.format(891890121112L)
 
